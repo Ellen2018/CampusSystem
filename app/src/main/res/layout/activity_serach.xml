@@ -49,6 +49,8 @@
                 android:layout_centerInParent="true"
                 android:background="@null"
                 android:hint="请输入搜索内容"
+                android:clickable="true"
+                android:focusableInTouchMode="false"
                 android:paddingLeft="10dp"
                 android:paddingRight="40dp"
                 android:singleLine="true"
