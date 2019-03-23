@@ -25,9 +25,13 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
 
+    private static String STRING_HOME = "首页";
+    private static String STRING_GRADE = "等级";
+    private static String STRING_MORE = "更多";
+
     private BaseFragment currentFragment;
 
-    private String[] titles = {"首页","等级","更多"};
+    private String[] titles = {STRING_HOME,STRING_GRADE,STRING_MORE};
 
     @Override
     protected void setStatus() {

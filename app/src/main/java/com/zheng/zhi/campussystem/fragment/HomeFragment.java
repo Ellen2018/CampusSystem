@@ -21,7 +21,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private int[] iamgeId = {R.mipmap.itme1,R.mipmap.item2,R.mipmap.item3};
+    private int[] iamgeIdArray = {R.mipmap.i1,R.mipmap.i2,R.mipmap.i3,R.mipmap.i4,R.mipmap.i5};
 
     @Override
     protected void initData() {
@@ -32,9 +32,9 @@ public class HomeFragment extends BaseFragment {
     protected void initView() {
         banner.setImageLoader(new GlideImageLoader());
         List<Integer> imageList = new ArrayList<>();
-        imageList.add(R.mipmap.itme1);
-        imageList.add(R.mipmap.item2);
-        imageList.add(R.mipmap.item3);
+       for(int imageId:iamgeIdArray){
+           imageList.add(imageId);
+       }
         banner.isAutoPlay(true);
         banner.setDelayTime(2000);
         banner.setImages(imageList);
