@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp">
+
+        <ProgressBar
+            android:id="@+id/pb_wait"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/pb_wait"
+            android:gravity="center_vertical"
+            android:text="加载中..."
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
