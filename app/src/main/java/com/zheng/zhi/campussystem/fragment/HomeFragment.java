@@ -22,6 +22,8 @@ public class HomeFragment extends BaseFragment {
     RecyclerView recyclerView;
 
     private int[] iamgeIdArray = {R.mipmap.i1,R.mipmap.i2,R.mipmap.i3,R.mipmap.i4,R.mipmap.i5};
+    private String[] titleString = {"学院简介","院系设置","校园新闻","通知公告","教务信息",
+            "校车查询","交流中心","图书馆","校园周边","联系我们","站内搜索"};
 
     @Override
     protected void initData() {
@@ -41,7 +43,7 @@ public class HomeFragment extends BaseFragment {
         banner.start();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),4);
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(new HomeRecyclerViewAdapter(getActivity()));
+        recyclerView.setAdapter(new HomeRecyclerViewAdapter(getActivity(),titleString));
     }
 
     @Override

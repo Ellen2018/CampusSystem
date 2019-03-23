@@ -50,9 +50,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem(R.mipmap.ic_launcher,titles[0]);
-        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem(R.mipmap.ic_launcher,titles[1]);
-        BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem(R.mipmap.ic_launcher,titles[2]);
+        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem(R.mipmap.sy,titles[0]);
+        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem(R.mipmap.dj,titles[1]);
+        BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem(R.mipmap.gd,titles[2]);
         bottomNavigationBar.addItem(bottomNavigationItem1);
         bottomNavigationBar.addItem(bottomNavigationItem2);
         bottomNavigationBar.addItem(bottomNavigationItem3);
