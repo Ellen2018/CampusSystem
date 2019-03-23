@@ -36,12 +36,14 @@ public class WebViewSetttingUtils {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+            if(callback != null)
             callback.startLoading(url);
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            if(callback != null)
             callback.finishLoading(url);
         }
     }

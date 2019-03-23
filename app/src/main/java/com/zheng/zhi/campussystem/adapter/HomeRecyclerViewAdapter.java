@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
+import com.zheng.zhi.campussystem.activity.SerachActivity;
 import com.zheng.zhi.campussystem.activity.WebViewActivity;
 import com.zheng.zhi.campussystem.dialog.JtlxDialog;
 
@@ -62,6 +63,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 url = "http://www.qcuwh.cn/index.php/index-view-aid-11622.html";
                 break;
             case "教务信息":
+                url = "http://xxgk.qcuwh.cn/";
                 break;
             case "交通路线":
                 //弹出交通路线的对话框
@@ -81,7 +83,9 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 url = "http://www.qcuwh.cn/index.php/index-show-tid-1073.html";
                 break;
             case "站内搜索":
-                url = "http://www.qcuwh.cn/index.php/commonform-search.html?key=计算机&button=+";
+                //url = "http://www.qcuwh.cn/index.php/commonform-search.html?key=计算机&button=+";
+                Intent intent1 = new Intent(context, SerachActivity.class);
+                context.startActivity(intent1);
                 break;
         }
         if(url.length() != 0) {
