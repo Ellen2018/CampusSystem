@@ -6,12 +6,10 @@ import com.zheng.zhi.campussystem.base.BaseFragment;
 public class GradeFragment extends BaseFragment {
     @Override
     protected void initData() {
-
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override

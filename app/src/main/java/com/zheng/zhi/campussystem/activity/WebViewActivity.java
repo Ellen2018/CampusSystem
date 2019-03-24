@@ -11,6 +11,7 @@ import com.zheng.zhi.campussystem.base.BaseActivity;
 import com.zheng.zhi.campussystem.dialog.WaitDialog;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
 import com.zheng.zhi.campussystem.utils.WebViewSetttingUtils;
+import com.zheng.zhi.campussystem.utils.statusutil.StatusUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,6 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected void setStatus() {
-
     }
 
     @Override

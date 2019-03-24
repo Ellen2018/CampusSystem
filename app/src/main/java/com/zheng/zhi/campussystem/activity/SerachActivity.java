@@ -16,6 +16,7 @@ import com.zheng.zhi.campussystem.dialog.SerachHistoryDialog;
 import com.zheng.zhi.campussystem.helper.MyMMKV;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
 import com.zheng.zhi.campussystem.utils.WebViewSetttingUtils;
+import com.zheng.zhi.campussystem.utils.statusutil.StatusUtils;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -107,7 +108,6 @@ public class SerachActivity extends BaseActivity {
 
     @Override
     protected void setStatus() {
-
     }
 
     @Override
