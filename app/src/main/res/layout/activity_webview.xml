@@ -7,7 +7,7 @@
         android:id="@+id/rl_title_bar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/holo_blue_bright">
+        android:background="@color/blue">
 
         <ImageView
             android:id="@+id/back"
