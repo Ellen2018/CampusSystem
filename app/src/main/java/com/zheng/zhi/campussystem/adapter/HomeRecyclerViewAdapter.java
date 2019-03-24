@@ -1,6 +1,5 @@
 package com.zheng.zhi.campussystem.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +38,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     @Override
     public void onBindViewHolder(final HomeRecyclerViewHolder holder, final int position) {
         holder.tv.setText(titles[position]);
+        handlerIcon(holder,position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +51,44 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 }
             }
         });
+    }
+
+    private void handlerIcon(HomeRecyclerViewHolder holder, int position) {
+        switch (position){
+            case 0:
+                holder.iv.setImageResource(R.mipmap.xxjj);
+                break;
+            case 1:
+                holder.iv.setImageResource(R.mipmap.yxsz);
+                break;
+            case 2:
+                holder.iv.setImageResource(R.mipmap.xyxw);
+                break;
+            case 3:
+                holder.iv.setImageResource(R.mipmap.tzgg);
+                break;
+            case 4:
+                holder.iv.setImageResource(R.mipmap.jwxx);
+                break;
+            case 5:
+                holder.iv.setImageResource(R.mipmap.jtlx);
+                break;
+            case 6:
+                holder.iv.setImageResource(R.mipmap.jlzx);
+                break;
+            case 7:
+                holder.iv.setImageResource(R.mipmap.rcpy);
+                break;
+            case 8:
+                holder.iv.setImageResource(R.mipmap.xyzb);
+                break;
+            case 9:
+                holder.iv.setImageResource(R.mipmap.lxwm);
+                break;
+            case 10:
+                holder.iv.setImageResource(R.mipmap.zlss);
+                break;
+        }
     }
 
     private void handlerWhlj(HomeRecyclerViewHolder holder,int position){

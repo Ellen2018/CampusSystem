@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
     TextView tvTitle;
 
     private static String STRING_HOME = "首页";
-    private static String STRING_GRADE = "等级";
+    private static String STRING_GRADE = "新闻";
     private static String STRING_MORE = "更多";
 
     private BaseFragment currentFragment;
@@ -50,13 +50,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem(R.mipmap.sy,titles[0]);
-        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem(R.mipmap.dj,titles[1]);
+        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem(R.mipmap.xw,titles[1]);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem(R.mipmap.gd,titles[2]);
         bottomNavigationBar.addItem(bottomNavigationItem1);
         bottomNavigationBar.addItem(bottomNavigationItem2);
         bottomNavigationBar.addItem(bottomNavigationItem3);
+        bottomNavigationBar.setBarBackgroundColor("#ffffff") // 背景颜色
+                .setInActiveColor("#bfbfbf") // 未选中状态颜色
+                .setActiveColor("#1296db"); // 选中状态颜色
         bottomNavigationBar.initialise();
-        bottomNavigationBar.setActiveColor(R.color.colorAccent);
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
            @Override
            public void onTabSelected(int position) {
@@ -92,7 +94,7 @@ public class MainActivity extends BaseActivity {
                 case "首页":
                     currentFragment = new HomeFragment();
                     break;
-                case "等级":
+                case "新闻":
                     currentFragment = new GradeFragment();
                     break;
                 case "更多":

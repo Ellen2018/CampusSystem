@@ -5,13 +5,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
+            android:padding="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -19,9 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv"
-            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
-            android:text="item" />
+            android:text="item"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 
