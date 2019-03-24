@@ -2,14 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:text="Grade"
-        android:textSize="80sp"
-        android:textColor="@color/white"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
