@@ -5,9 +5,13 @@ import android.view.View;
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseDialogFragment;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
-public class LxwmDialog extends BaseDialogFragment {
+public class LxwmDialog extends BaseDialogFragment implements BaseDialogFragment.ButterKnifeInterface {
+
+    Unbinder unbinder;
 
     @OnClick(R.id.cancel)
     void onClick(View view){
@@ -46,5 +50,15 @@ public class LxwmDialog extends BaseDialogFragment {
     @Override
     protected Boolean setWinowTransparent() {
         return null;
+    }
+
+    @Override
+    public void initButterKnife(View view) {
+        unbinder = ButterKnife.bind(this,view);
+    }
+
+    @Override
+    public void unBindButterKnife() {
+        unbinder.unbind();
     }
 }

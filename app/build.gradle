@@ -8,6 +8,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
     buildTypes {
         release {
@@ -32,4 +36,21 @@ dependencies {
     implementation 'com.tencent:mmkv:1.0.18'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+
+    //SpringView core library (only include DefaultHeader/Footer)
+    implementation 'com.liaoinstan.springview:library:1.5.1'
+
+    //other Headers/Footers, choose one or more that you like
+    implementation 'com.liaoinstan.springview:AcfunHeader:1.5.1'         //AcFun style （header and footer）
+    implementation 'com.liaoinstan.springview:AliHeader:1.5.1'           //alitrip style （header and footer）
+    implementation 'com.liaoinstan.springview:MeituanHeader:1.5.1'       //meituan style （header and footer）
+    implementation 'com.liaoinstan.springview:RotationHeader:1.5.1'      //mechanical gear style （header and footer）
+    implementation 'com.liaoinstan.springview:WeixinHeader:1.5.1'        //weichat Mini Program header（only header）
+
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.0_preview'
 }

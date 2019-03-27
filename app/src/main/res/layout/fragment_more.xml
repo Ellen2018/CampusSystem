@@ -1,15 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:text="More"
-        android:textSize="80sp"
-        android:textColor="@color/white"
-        android:layout_height="match_parent" />
+        android:layout_height="68dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/profile_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:text="ClAndEllen" />
+
+            <TextView
+                android:id="@+id/tv_user_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:text="积极面对生活" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于开发者"
+                android:gravity="left|center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于开发者"
+                android:gravity="left|center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于开发者"
+                android:gravity="left|center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于开发者"
+                android:gravity="left|center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于开发者"
+                android:gravity="left|center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

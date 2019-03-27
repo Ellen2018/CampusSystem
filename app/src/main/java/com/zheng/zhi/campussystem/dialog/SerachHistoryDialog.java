@@ -2,108 +2,77 @@ package com.zheng.zhi.campussystem.dialog;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.activity.SerachActivity;
 import com.zheng.zhi.campussystem.adapter.SerachHistoryAdapter;
-import com.zheng.zhi.campussystem.base.BasePopWindow;
+import com.zheng.zhi.campussystem.base.BasePopwindow;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class SerachHistoryDialog extends BasePopWindow {
+public class SerachHistoryDialog extends BasePopwindow implements BasePopwindow.ButterKnifeInterface {
 
-    private List<SerachActivity.Serach> serachList;
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-
-    private Callback callback;
-
-    public SerachHistoryDialog(Context context, Activity activity, View view, List<SerachActivity.Serach> serachList,Callback callback) {
-        super(context, activity, view);
-        this.serachList = serachList;
-        this.callback = callback;
+    public SerachHistoryDialog(Activity activity, Context context) {
+        super(activity, context);
     }
 
     @Override
-    protected int setLayout() {
-        return R.layout.dialog_serach_history;
-    }
-
-    @Override
-    protected int[] setWidthHeight() {
-        int[] a = {ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT};
-        return a;
-    }
-
-    @Override
-    protected View setParentView() {
+    protected View onCreateView() {
         return null;
     }
 
     @Override
-    protected int showPlace() {
-        return Gravity.BOTTOM;
+    protected int setWidth() {
+        return 0;
     }
 
     @Override
-    protected Boolean setWinowTransparent() {
+    protected int setHeight() {
+        return 0;
+    }
+
+    @Override
+    protected boolean isGetFocus() {
         return false;
     }
 
     @Override
-    protected Boolean setOutsideTouchable() {
-        return true;
-    }
-
-    @Override
-    protected Boolean setTouchable() {
-        return true;
-    }
-
-    @Override
-    protected Integer setAnimationStyle() {
+    protected Boolean isSetBackgroundDrawable() {
         return null;
     }
 
     @Override
-    protected Boolean setShowBackgroundBlack() {
+    protected Drawable setBackgroundDrawable() {
+        return null;
+    }
+
+    @Override
+    protected boolean isResponseOutsideTouchable() {
         return false;
     }
 
     @Override
-    protected boolean isFocusable() {
+    protected boolean isResponseTouchable() {
         return false;
     }
 
     @Override
-    protected void initView() {
+    protected void setOtherSetting(PopupWindow popupWindow) {
 
     }
 
     @Override
-    protected void initData() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new SerachHistoryAdapter(getContext(), serachList, new SerachHistoryAdapter.OnItemClick() {
-            @Override
-            public void onClick(int position) {
-                callback.serach(serachList.get(position).getContent());
-            }
-        }));
-    }
-
-    @Override
-    protected Boolean isSetSoftInputMode() {
+    protected Boolean isSetShowBackgroundBlack() {
         return null;
     }
 
@@ -113,11 +82,12 @@ public class SerachHistoryDialog extends BasePopWindow {
     }
 
     @Override
-    protected Boolean setClippingEnabled() {
-        return null;
+    public void initButterKnife(View view) {
+
     }
 
-    public interface Callback{
-        void serach(String content);
+    @Override
+    public void unBindButterKnife() {
+
     }
 }

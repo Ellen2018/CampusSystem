@@ -1,7 +1,6 @@
 package com.zheng.zhi.campussystem.activity;
 
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
@@ -11,12 +10,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseActivity;
-import com.zheng.zhi.campussystem.base.BasePopWindow;
 import com.zheng.zhi.campussystem.dialog.SerachHistoryDialog;
 import com.zheng.zhi.campussystem.helper.MyMMKV;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
 import com.zheng.zhi.campussystem.utils.WebViewSetttingUtils;
-import com.zheng.zhi.campussystem.utils.statusutil.StatusUtils;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -24,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SerachActivity extends BaseActivity {
+public class SerachActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface{
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -49,7 +47,7 @@ public class SerachActivity extends BaseActivity {
             case R.id.iv_serach:
                 String serachString = editText.getText().toString().trim();
                 if(serachString.length() == 0){
-                    ToastUtils.toast(context,"亲,搜索内容不能为空!");
+                    ToastUtils.toast(SerachActivity.this,"亲,搜索内容不能为空!");
                     return;
                 }
                 toSerach(serachString);
@@ -128,6 +126,11 @@ public class SerachActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void destory() {
+
+    }
+
     private List<Serach> getSerachList(String json){
         Type type = new TypeToken<ArrayList<Serach>>()
         {}.getType();
@@ -159,23 +162,6 @@ public class SerachActivity extends BaseActivity {
     }
 
     private void showSerachDialog(){
-        if(serachHistoryDialog == null) {
-            serachHistoryDialog = new SerachHistoryDialog(context, SerachActivity.this, editText, serachList, new SerachHistoryDialog.Callback() {
-                @Override
-                public void serach(String content) {
-                    toSerach(content);
-                    editText.setText(content);
-                    cancelDialog();
-                }
-            });
-            serachHistoryDialog.showBottom();
-            serachHistoryDialog.setOnDismissListener(new BasePopWindow.OnDismissListener() {
-                @Override
-                public void dissmiss() {
-                    serachHistoryDialog = null;
-                }
-            });
-        }
     }
 
     private void cancelDialog(){
@@ -186,6 +172,11 @@ public class SerachActivity extends BaseActivity {
     @Override
     protected int setLayoutId() {
         return R.layout.activity_serach;
+    }
+
+    @Override
+    public void initButterKnife() {
+        ButterKnife.bind(this);
     }
 
     public static  class Serach{

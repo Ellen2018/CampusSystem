@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -12,15 +13,17 @@ import com.zheng.zhi.campussystem.activity.WebViewActivity;
 import com.zheng.zhi.campussystem.adapter.HomeRecyclerViewAdapter;
 import com.zheng.zhi.campussystem.base.BaseFragment;
 import com.zheng.zhi.campussystem.utils.GlideImageLoader;
-import com.zheng.zhi.campussystem.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements BaseFragment.ButterKnifeInterface {
 
+    private Unbinder unbinder;
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.recycler_view)
@@ -77,5 +80,15 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected int setLayout() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    public void initButterKnife(View view) {
+        unbinder = ButterKnife.bind(this,view);
+    }
+
+    @Override
+    public void unBindButterKnife() {
+        unbinder.unbind();
     }
 }

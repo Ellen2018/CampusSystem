@@ -7,9 +7,13 @@ import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseDialogFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
-public class JtlxDialog extends BaseDialogFragment {
+public class JtlxDialog extends BaseDialogFragment implements BaseDialogFragment.ButterKnifeInterface{
+
+    private Unbinder unbinder;
 
     private String content = "武汉大学珞珈学院新校园位于湖北省武汉市东湖高新技术开发区中华科技产业园玉屏大道9号，驾车可导航武汉晴川学院为终点站即可到达。\n" +
             "\n" +
@@ -63,5 +67,15 @@ public class JtlxDialog extends BaseDialogFragment {
     @Override
     protected Boolean setWinowTransparent() {
         return null;
+    }
+
+    @Override
+    public void initButterKnife(View view) {
+       unbinder =  ButterKnife.bind(this,view);
+    }
+
+    @Override
+    public void unBindButterKnife() {
+           unbinder.unbind();
     }
 }

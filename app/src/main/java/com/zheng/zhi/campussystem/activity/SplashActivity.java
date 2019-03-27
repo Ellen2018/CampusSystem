@@ -1,12 +1,9 @@
 package com.zheng.zhi.campussystem.activity;
 
-import android.graphics.Color;
-import android.os.Bundle;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
@@ -19,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface{
 
     private static final int TIME = 5;
     private SplashHandler splashHandler;
@@ -34,7 +31,9 @@ public class SplashActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.tv_jump:
                 isClickTv = true;
-                jumpToActivityAndFinish(MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -56,6 +55,11 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
+    protected void destory() {
+
+    }
+
+    @Override
     protected void initView() {
        tvJump.setText("跳过:"+TIME);
     }
@@ -70,6 +74,11 @@ public class SplashActivity extends BaseActivity {
         super.onResume();
         //开启线程进行倒计时任务
         new SplashThread(this,TIME).start();
+    }
+
+    @Override
+    public void initButterKnife() {
+        ButterKnife.bind(this);
     }
 
 
@@ -112,7 +121,9 @@ public class SplashActivity extends BaseActivity {
             SplashActivity splashActivity = weakReference.get();
             splashActivity.tvJump.setText("跳过:"+(TIME - msg.what));
             if(msg.what == TIME && !weakReference.get().isClickTv){
-                weakReference.get().jumpToActivityAndFinish(MainActivity.class);
+                Intent intent = new Intent(weakReference.get(),MainActivity.class);
+                weakReference.get().startActivity(intent);
+                weakReference.get().finish();
             }
         }
     }

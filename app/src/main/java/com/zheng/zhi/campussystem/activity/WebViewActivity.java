@@ -8,18 +8,16 @@ import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseActivity;
-import com.zheng.zhi.campussystem.dialog.WaitDialog;
-import com.zheng.zhi.campussystem.utils.ToastUtils;
 import com.zheng.zhi.campussystem.utils.WebViewSetttingUtils;
-import com.zheng.zhi.campussystem.utils.statusutil.StatusUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface{
 
     @BindView(R.id.web_view)
     WebView webView;
@@ -78,6 +76,11 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
+    protected void destory() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }
@@ -105,5 +108,10 @@ public class WebViewActivity extends BaseActivity {
             urlList.remove(urlList.size() - 1);
             webView.loadUrl(urlList.get(urlList.size() - 1));
         }
+    }
+
+    @Override
+    public void initButterKnife() {
+        ButterKnife.bind(this);
     }
 }

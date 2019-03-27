@@ -1,24 +1,20 @@
 package com.zheng.zhi.campussystem.activity;
 
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseActivity;
 import com.zheng.zhi.campussystem.base.BaseFragment;
-import com.zheng.zhi.campussystem.fragment.GradeFragment;
 import com.zheng.zhi.campussystem.fragment.HomeFragment;
 import com.zheng.zhi.campussystem.fragment.MoreFragment;
-import com.zheng.zhi.campussystem.utils.statusutil.StatusUtils;
+import com.zheng.zhi.campussystem.fragment.NewsFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface {
 
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
@@ -39,11 +35,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected Boolean isSetVerticalScreen() {
-        return null;
+        return true;
     }
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void destory() {
 
     }
 
@@ -95,7 +96,7 @@ public class MainActivity extends BaseActivity {
                     currentFragment = new HomeFragment();
                     break;
                 case "新闻":
-                    currentFragment = new GradeFragment();
+                    currentFragment = new NewsFragment();
                     break;
                 case "更多":
                     currentFragment = new MoreFragment();
@@ -105,5 +106,10 @@ public class MainActivity extends BaseActivity {
         }else {
             getSupportFragmentManager().beginTransaction().show(currentFragment).commit();
         }
+    }
+
+    @Override
+    public void initButterKnife() {
+        ButterKnife.bind(this);
     }
 }

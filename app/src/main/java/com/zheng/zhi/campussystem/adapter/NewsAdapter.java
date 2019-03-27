@@ -2,69 +2,93 @@ package com.zheng.zhi.campussystem.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zheng.zhi.campussystem.R;
-import com.zheng.zhi.campussystem.activity.WebViewActivity;
-import com.zheng.zhi.campussystem.bean.News;
+import com.zheng.zhi.campussystem.bean.NewsBean;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterViewHolder> {
+import java.util.List;
+
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
+
+
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
 
     private Context context;
-    private News news;
+    private List<NewsBean.DataBean> dataBeanList;
 
-    public NewsAdapter(Context context,News news) {
+    public NewsAdapter(Context context, List<NewsBean.DataBean> dataBeanList) {
         this.context = context;
-        this.news = news;
+        this.dataBeanList = dataBeanList;
     }
 
+    @NonNull
     @Override
-    public NewsAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
-        return new NewsAdapterViewHolder(view);
+    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_news, null);
+        return new NewsViewHolder(view);
     }
 
+    /**
+     * type=41 : 视频
+     * type=10 : 图片
+     * type=29 : 段子
+     * type=31 : 声音
+     * @param holder
+     * @param position
+     */
+
     @Override
-    public void onBindViewHolder(NewsAdapterViewHolder holder, final int position) {
-        News.DataBean.TechBean techBean = news.getData().getTech().get(position);
-        if(techBean != null) {
-            if(techBean.getPicInfo() != null && techBean.getPicInfo().size() > 0)
-            Glide.with(context).load(techBean.getPicInfo().get(0).getUrl()).into(holder.imageView);
+    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
+        holder.iv.setImageBitmap(null);
+        final NewsBean.DataBean dataBean = dataBeanList.get(position);
+        if(dataBean.getType().equals("41")){
+            //视频
+            Glide.with(context).load(dataBean.getBimageuri()).into(holder.iv);
+            holder.tvContent.setText(dataBean.getText()+"[视频]");
+            holder.jzvdStd.setUp(dataBean.getVideouri(), dataBean.getText() , Jzvd.SCREEN_NORMAL);
+            Glide.with(context).load(dataBean.getBimageuri()).into(holder.jzvdStd.thumbImageView);
+        }else if(dataBean.getType().equals("10")){
+            //图片
+            Glide.with(context).load(dataBean.getImage0()).into(holder.iv);
+            holder.tvContent.setText(dataBean.getText()+"[图片]");
+        }else if(dataBean.getType().equals("29")){
+            //段子
+            Glide.with(context).load(dataBean.getBimageuri()).into(holder.iv);
+            holder.tvContent.setText(dataBean.getText()+"[段子]");
         }
-        holder.textView.setText(news.getData().getDy().get(position).getTitle());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra(WebViewActivity.URL,news.getData().getDy().get(position).getLink());
-                intent.putExtra(WebViewActivity.TITLE,"新闻");
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return news == null ? 0 : news.getData().getDy().size();
+        return dataBeanList == null ? 0 : dataBeanList.size();
     }
 
-    static class NewsAdapterViewHolder extends RecyclerView.ViewHolder {
+    static class NewsViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView textView;
+        TextView tvContent;
+        ImageView iv;
+        JzvdStd jzvdStd;
 
-        public NewsAdapterViewHolder(View itemView) {
+        public NewsViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.iv_news);
-            textView = itemView.findViewById(R.id.tv_news_title);
+            tvContent = itemView.findViewById(R.id.tv_content);
+            iv = itemView.findViewById(R.id.iv);
+            jzvdStd = itemView.findViewById(R.id.videoplayer);
         }
+
     }
 
 }
