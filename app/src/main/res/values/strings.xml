@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CampusSystem</string>
+    <string name="divisor_zero_error">除数不能为0</string>
 </resources>

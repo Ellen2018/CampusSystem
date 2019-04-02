@@ -7,4 +7,18 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="blue">#1296db</color>
+    <color name="red">#FF0000</color>
+    <color name="main_drawer_bg_color">#13c7ae</color>
+    <color name="cloud_gray">#808A87</color>
+    <color name="draw_text">#666666</color>
+    <color name="gray_editText">#CFCFCF</color>
+    <color name="gains_gray">#DCDCDC</color>
+    <color name="dialog_setting_password_green">#13c7ae</color>
+    <color name="calculator_yellow">#FAB427</color>
+    <color name="transparent">#00000000</color>
+    <color name="change_password">#13c7ae</color>
+    <color name="hint_color" >#80666666</color>
+    <color name="save_color">#feb427</color>
+    <color name="orange_color">#FDB327</color>
+    <color name="gray_light">#DFDFDF</color>
 </resources>

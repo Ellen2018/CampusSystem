@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="up_color" format="color"></attr>
+    <attr name="down_color" format="color"></attr>
+    <attr name="value_color" format="color"></attr>
+
+    <declare-styleable name="CalculatorTextView">
+        <attr name="up_color"></attr>
+        <attr name="down_color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircleView">
+        <attr name="value_color"></attr>
+    </declare-styleable>
+
+</resources>

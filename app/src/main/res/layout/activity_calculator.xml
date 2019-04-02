@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/skin_setting_dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.CalculatorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/equation_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:gravity="left|bottom"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="45sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_seven"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="7"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_four"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="4"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_one"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_zero"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_eight"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="8"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_five"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="5"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_two"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_point"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="."
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_nine"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="9"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_six"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="6"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_number_three"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="3"
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/left_equals"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="="
+                        app:up_color="@color/dialog_setting_password_green" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/right_delete"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="DEL"
+                        app:up_color="@color/calculator_yellow" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/right_div"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="÷"
+                        app:up_color="@color/calculator_yellow" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/right_mul"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="×"
+                        app:up_color="@color/calculator_yellow" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/right_sub"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        app:up_color="@color/calculator_yellow" />
+
+                    <com.zheng.zhi.campussystem.view.CalculatorTextView
+                        android:id="@+id/right_add"
+                        style="@style/calculator_keyboard_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="+"
+                        app:up_color="@color/calculator_yellow" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/skin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/changecolor_icon" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_left_drawer_layout"
+        android:layout_width="166dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/cloud_gray"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/choose_skin_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>
