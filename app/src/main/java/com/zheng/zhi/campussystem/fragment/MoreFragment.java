@@ -17,6 +17,7 @@ import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.activity.CalculatorActivity;
 import com.zheng.zhi.campussystem.activity.NoteBookActivity;
 import com.zheng.zhi.campussystem.base.BaseFragment;
+import com.zheng.zhi.campussystem.dialog.DeveloperMessageDialog;
 import com.zheng.zhi.campussystem.helper.MyMMKV;
 import com.zheng.zhi.campussystem.utils.PermissionUtils;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
@@ -85,7 +86,8 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                 startActivity(intentNotebook);
                 break;
             case R.id.llMessage:
-                ToastUtils.toast(getActivity(),"无所谓");
+                DeveloperMessageDialog developerMessageDialog = new DeveloperMessageDialog(userMessage.getImagePath());
+                developerMessageDialog.show(getFragmentManager(),"message");
                 break;
         }
     }
