@@ -1,5 +1,7 @@
 package com.zheng.zhi.campussystem.activity;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -106,6 +108,18 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
         }else {
             getSupportFragmentManager().beginTransaction().show(currentFragment).commit();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        currentFragment.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        currentFragment.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
