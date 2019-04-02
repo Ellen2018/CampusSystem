@@ -54,7 +54,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
@@ -64,14 +63,17 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llCalculator"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/main_drawer_item_bg"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:padding="8dp"
+                android:src="@mipmap/jsq" />
 
             <TextView
                 android:layout_width="0dp"
@@ -79,27 +81,36 @@
                 android:layout_weight="1"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
-                android:text="关于开发者"
+                android:text="计算器"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:padding="12dp"
+                android:src="@mipmap/yjt" />
 
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
+            android:id="@+id/llNotebook"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/main_drawer_item_bg"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:padding="4dp"
+                android:src="@mipmap/bjb" />
 
             <TextView
                 android:layout_width="0dp"
@@ -107,27 +118,36 @@
                 android:layout_weight="1"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
-                android:text="关于开发者"
+                android:text="笔记本"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:padding="12dp"
+                android:src="@mipmap/yjt" />
 
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
+            android:id="@+id/llMessage"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/main_drawer_item_bg"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
+                android:padding="8dp"
+                android:src="@mipmap/gy" />
 
             <TextView
                 android:layout_width="0dp"
@@ -142,66 +162,15 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
-
+                android:padding="12dp"
+                android:src="@mipmap/yjt" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="关于开发者"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="关于开发者"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher" />
-
-
-        </LinearLayout>
+            android:layout_height="0.3dp"
+            android:background="@android:color/darker_gray" />
 
     </LinearLayout>
 

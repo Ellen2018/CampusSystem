@@ -166,9 +166,13 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
                     Toast.makeText(getActivity(),"对不起，刷新数据失败",Toast.LENGTH_SHORT).show();
                     break;
                 case GET_DATA_SUCCESS_DOWN:
-                    newsAdapter.notifyDataSetChanged();
-                    Toast.makeText(getActivity(),"下拉刷新数据成功！",Toast.LENGTH_SHORT).show();
-
+                    if(newsAdapter == null){
+                        newsAdapter = new NewsAdapter(getActivity(),dataBeanList);
+                        recyclerView.setAdapter(newsAdapter);
+                    }else {
+                        newsAdapter.notifyDataSetChanged();
+                        Toast.makeText(getActivity(), "下拉刷新数据成功！", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case GET_DATA_SUCCESS_UP:
                     if(newsAdapter == null){

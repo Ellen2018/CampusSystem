@@ -2,7 +2,6 @@ package com.zheng.zhi.campussystem.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Selection;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -262,15 +260,6 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
     private boolean verifyPassword(String password) {
         return this.password.equals(password);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            toHomeActivity();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     @TargetApi(Build.VERSION_CODES.M)

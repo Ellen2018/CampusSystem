@@ -5,14 +5,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.zheng.zhi.campussystem.R;
+import com.zheng.zhi.campussystem.activity.CalculatorActivity;
+import com.zheng.zhi.campussystem.activity.NoteBookActivity;
 import com.zheng.zhi.campussystem.base.BaseFragment;
+import com.zheng.zhi.campussystem.helper.MyMMKV;
 import com.zheng.zhi.campussystem.utils.PermissionUtils;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
 import com.zheng.zhi.campussystem.utils.UriUtils;
@@ -22,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static android.app.Activity.RESULT_OK;
@@ -32,18 +38,25 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
     ImageView imageView;
     @BindView(R.id.ll_user_message)
     LinearLayout llUserMessage;
+    @BindView(R.id.llCalculator)
+    LinearLayout llCalculator;
+    @BindView(R.id.tv_user_name)
+    TextView tvUserName;
+    @BindView(R.id.tv_user_content)
+    TextView tvUserContent;
 
     private Unbinder unbinder;
     private final static int CHOOSE_IMAGE_RETRUEN_CODE = 1;
     private final static int GET_FILE_RW_PERMISSION = 2;
     private PermissionUtils permissionUtils;
+    private MyMMKV myMMKV;
+    private final String USER_MESSAGE = "User_Message";
+    private UserMessage userMessage;
 
-    @Override
-    protected void initData() {
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @OnClick({R.id.profile_image,R.id.llCalculator,R.id.llNotebook,R.id.llMessage})
+    void onClick(View view){
+        switch (view.getId()){
+            case R.id.profile_image:
                 List<String> stringList = new ArrayList<>();
                 stringList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
                 stringList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -51,7 +64,6 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
 
                     @Override
                     public void success() {
-                        Log.e("执行没？","dsad");
                         //调用系统相册选取图片
                         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
                         photoPickerIntent.setType("image/*");
@@ -60,17 +72,55 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
 
                     @Override
                     public void failure() {
-                        ToastUtils.toast(getActivity(),"您拒绝了文件权限！");
+                        ToastUtils.toast(getActivity(), "您拒绝了文件权限！");
                     }
                 });
-            }
-        });
+                break;
+            case R.id.llCalculator:
+                Intent intent = new Intent(getActivity(), CalculatorActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.llNotebook:
+                Intent intentNotebook = new Intent(getActivity(), NoteBookActivity.class);
+                startActivity(intentNotebook);
+                break;
+            case R.id.llMessage:
+                ToastUtils.toast(getActivity(),"无所谓");
+                break;
+        }
+    }
 
+    @Override
+    protected void initData() {
     }
 
     @Override
     protected void initView() {
-        permissionUtils = new PermissionUtils(getActivity(),getActivity());
+        permissionUtils = new PermissionUtils(getActivity(), getActivity());
+        myMMKV = new MyMMKV(this.getClass().getName());
+        String json = (String) myMMKV.getValue(USER_MESSAGE, "");
+        if (json.length() > 0) {
+            userMessage = new Gson().fromJson(json, UserMessage.class);
+            showUserMessage();
+        } else {
+            userMessage = new UserMessage();
+        }
+    }
+
+    private void showUserMessage() {
+        if (!TextUtils.isEmpty(userMessage.getImagePath())) {
+            Glide.with(getActivity()).load(userMessage.getImagePath()).into(imageView);
+        }
+        if (!TextUtils.isEmpty(userMessage.getUserName())) {
+            tvUserName.setText(userMessage.getUserName());
+        }
+        if (!TextUtils.isEmpty(userMessage.getContent())) {
+            tvUserName.setText(userMessage.getContent());
+        }
+    }
+
+    private void toSaveUserMessage() {
+        myMMKV.save(USER_MESSAGE, new Gson().toJson(userMessage));
     }
 
     @Override
@@ -80,7 +130,7 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
 
     @Override
     public void initButterKnife(View view) {
-        unbinder = ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
     }
 
     @Override
@@ -91,10 +141,12 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            if(requestCode == CHOOSE_IMAGE_RETRUEN_CODE) {
+            if (requestCode == CHOOSE_IMAGE_RETRUEN_CODE) {
                 Uri uri = data.getData();
                 String imagePath = UriUtils.getRealFilePath(getActivity(), uri);
                 Glide.with(getActivity()).load(imagePath).into(imageView);
+                userMessage.setImagePath(imagePath);
+                toSaveUserMessage();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -102,7 +154,38 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        permissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        permissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    private static class UserMessage {
+        private String userName;
+        private String content;
+        private String imagePath;
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getImagePath() {
+            return imagePath;
+        }
+
+        public void setImagePath(String imagePath) {
+            this.imagePath = imagePath;
+        }
+    }
+
 }
