@@ -18,6 +18,7 @@ import com.zheng.zhi.campussystem.activity.CalculatorActivity;
 import com.zheng.zhi.campussystem.activity.NoteBookActivity;
 import com.zheng.zhi.campussystem.base.BaseFragment;
 import com.zheng.zhi.campussystem.dialog.DeveloperMessageDialog;
+import com.zheng.zhi.campussystem.dialog.EditTextDialg;
 import com.zheng.zhi.campussystem.helper.MyMMKV;
 import com.zheng.zhi.campussystem.utils.PermissionUtils;
 import com.zheng.zhi.campussystem.utils.ToastUtils;
@@ -53,8 +54,9 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
     private MyMMKV myMMKV;
     private final String USER_MESSAGE = "User_Message";
     private UserMessage userMessage;
+    private  EditTextDialg editTextDialg;
 
-    @OnClick({R.id.profile_image,R.id.llCalculator,R.id.llNotebook,R.id.llMessage})
+    @OnClick({R.id.profile_image,R.id.llCalculator,R.id.llNotebook,R.id.llMessage,R.id.tv_user_name,R.id.tv_user_content})
     void onClick(View view){
         switch (view.getId()){
             case R.id.profile_image:
@@ -89,6 +91,40 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                 DeveloperMessageDialog developerMessageDialog = new DeveloperMessageDialog(userMessage.getImagePath());
                 developerMessageDialog.show(getFragmentManager(),"message");
                 break;
+            case R.id.tv_user_name:
+                 editTextDialg = new EditTextDialg(userMessage.getUserName(), "编辑用户名", new EditTextDialg.Callback() {
+                    @Override
+                    public void ok(String content) {
+                        if(TextUtils.isEmpty(content)) {
+                            tvUserContent.setText("ClAndEllen");
+                        }else {
+                            tvUserContent.setText(content);
+                        }
+                        userMessage.setUserName(content);
+                        toSaveUserMessage();
+                        editTextDialg.dismiss();
+                        editTextDialg = null;
+                    }
+                });
+                editTextDialg.show(getFragmentManager(),"edit");
+                break;
+            case R.id.tv_user_content:
+                editTextDialg = new EditTextDialg(userMessage.getUserName(), "编辑介绍", new EditTextDialg.Callback() {
+                    @Override
+                    public void ok(String content) {
+                        if(TextUtils.isEmpty(content)) {
+                            tvUserContent.setText("积极面对生活");
+                        }else {
+                            tvUserContent.setText(content);
+                        }
+                        userMessage.setContent(content);
+                        toSaveUserMessage();
+                        editTextDialg.dismiss();
+                        editTextDialg = null;
+                    }
+                });
+                editTextDialg.show(getFragmentManager(),"edit");
+                break;
         }
     }
 
@@ -117,7 +153,7 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
             tvUserName.setText(userMessage.getUserName());
         }
         if (!TextUtils.isEmpty(userMessage.getContent())) {
-            tvUserName.setText(userMessage.getContent());
+            tvUserContent.setText(userMessage.getContent());
         }
     }
 

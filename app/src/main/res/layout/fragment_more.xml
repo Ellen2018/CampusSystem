@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:onClick="@null"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/profile_image"
             android:orientation="vertical">
 
             <TextView
@@ -35,7 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/main_drawer_item_bg"
                 android:gravity="center_vertical"
+                android:singleLine="true"
                 android:text="ClAndEllen"
                 android:textColor="@color/black" />
 
@@ -44,6 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/main_drawer_item_bg"
+                android:singleLine="true"
                 android:text="积极面对生活"
                 android:textColor="@color/black" />
 
