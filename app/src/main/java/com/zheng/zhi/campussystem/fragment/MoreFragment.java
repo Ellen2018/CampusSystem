@@ -96,9 +96,9 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                     @Override
                     public void ok(String content) {
                         if(TextUtils.isEmpty(content)) {
-                            tvUserContent.setText("ClAndEllen");
+                            tvUserName.setText("ClAndEllen");
                         }else {
-                            tvUserContent.setText(content);
+                            tvUserName.setText(content);
                         }
                         userMessage.setUserName(content);
                         toSaveUserMessage();

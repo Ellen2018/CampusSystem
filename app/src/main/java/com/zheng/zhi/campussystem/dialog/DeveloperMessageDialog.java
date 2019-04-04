@@ -65,7 +65,7 @@ public class DeveloperMessageDialog extends BaseDialogFragment implements BaseDi
         tvDepartmentName.setText(departmentName);
         tvTutorName.setText(tutorName);
         tvVersion.setText(version);
-        tvVersion.setText(date);
+        tvDate.setText(date);
     }
 
     @Override
