@@ -42,6 +42,19 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rl_title_bar" />
 
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title_bar"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="无任何笔记数据,请点击右下角加号添加吧！"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/iv_add_note_book"
         android:layout_width="44dp"

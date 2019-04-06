@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NoteBookActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface{
+public class NoteBookActivity extends BaseActivity implements BaseActivity.ButterKnifeInterface {
 
     private List<NoteBook> noteBookList;
     private MyMMKV myNoteBookMMKV;
@@ -32,50 +33,93 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_no_data)
+    TextView tvNoData;
 
-    @OnClick({R.id.back,R.id.serach,R.id.iv_add_note_book})
-    void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.back, R.id.serach, R.id.iv_add_note_book})
+    void onClick(View view) {
+        switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.serach:
-                ToastUtils.toast(NoteBookActivity.this,"搜索");
+                ToastUtils.toast(NoteBookActivity.this, "搜索");
                 break;
             case R.id.iv_add_note_book:
-                 editNoteBookDialog = new EditNoteBookDialog(new EditNoteBookDialog.Callback() {
-                    @Override
-                    public void ok(String title, String content, long dateTime) {
-                        editNoteBookDialog.dismiss();
-                        editNoteBookDialog = null;
-                        NoteBook noteBook = new NoteBook(title,content,dateTime);
-                        noteBookList.add(0,noteBook);
-                        saveNoteBook(noteBookList);
-                        //显示新的数据
-                        noteBookAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void cancel() {
-                        editNoteBookDialog.dismiss();
-                        editNoteBookDialog = null;
-                    }
-                });
-                editNoteBookDialog.show(getSupportFragmentManager(),"编辑文本");
+                showAddNoteBookDialog();
                 break;
         }
     }
 
-    private void saveNoteBook(List<NoteBook> noteBooks){
+    private void saveNoteBook(List<NoteBook> noteBooks) {
+        tvNoData.setVisibility(View.GONE);
         Gson gson = new Gson();
         String json = gson.toJson(noteBooks);
-        myNoteBookMMKV.save(this.getClass().getName(),json);
+        myNoteBookMMKV.save(this.getClass().getName(), json);
     }
 
+    //删除笔记
+    public void deleteNoteBook(NoteBook noteBook) {
+        noteBookList.remove(noteBook);
+        saveNoteBook(noteBookList);
+        noteBookAdapter.notifyDataSetChanged();
+        if (noteBookList == null || noteBookList.size() == 0) {
+            tvNoData.setVisibility(View.VISIBLE);
+        } else {
+            tvNoData.setVisibility(View.GONE);
+        }
+    }
+
+    //修改笔记
+    public void showUpdateNoteBookDialog(NoteBook noteBook) {
+        editNoteBookDialog = new EditNoteBookDialog(noteBook.getTitle(), noteBook.getContent(), new EditNoteBookDialog.Callback() {
+            @Override
+            public void ok(String title, String content, long dateTime) {
+                noteBook.setTitle(title);
+                noteBook.setContent(content);
+                noteBook.setCreateTime(dateTime);
+                noteBookAdapter.notifyDataSetChanged();
+                editNoteBookDialog.dismiss();
+                editNoteBookDialog = null;
+                saveNoteBook(noteBookList);
+            }
+
+            @Override
+            public void cancel() {
+                editNoteBookDialog.dismiss();
+                editNoteBookDialog = null;
+            }
+        });
+        editNoteBookDialog.show(getSupportFragmentManager(), "编辑文本");
+    }
+
+    //修改笔记
 
     @Override
     protected void setStatus() {
 
+    }
+
+    public void showAddNoteBookDialog() {
+        editNoteBookDialog = new EditNoteBookDialog(new EditNoteBookDialog.Callback() {
+            @Override
+            public void ok(String title, String content, long dateTime) {
+                editNoteBookDialog.dismiss();
+                editNoteBookDialog = null;
+                NoteBook noteBook = new NoteBook(title, content, dateTime);
+                noteBookList.add(0, noteBook);
+                saveNoteBook(noteBookList);
+                //显示新的数据
+                noteBookAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void cancel() {
+                editNoteBookDialog.dismiss();
+                editNoteBookDialog = null;
+            }
+        });
+        editNoteBookDialog.show(getSupportFragmentManager(), "编辑文本");
     }
 
     @Override
@@ -85,24 +129,24 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
 
     @Override
     protected void initView() {
-       myNoteBookMMKV = new MyMMKV(this.getClass().getName());
-        String json = (String) myNoteBookMMKV.getValue(this.getClass().getName(),"");
-        Log.e("存储的笔记数据",json);
-        if(json == null || json.length() == 0){
-            noteBookList  = new ArrayList<>();
+        myNoteBookMMKV = new MyMMKV(this.getClass().getName());
+        String json = (String) myNoteBookMMKV.getValue(this.getClass().getName(), "");
+        if (json == null || json.length() == 0) {
+            noteBookList = new ArrayList<>();
+            tvNoData.setVisibility(View.VISIBLE);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(NoteBookActivity.this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(linearLayoutManager);
-            noteBookAdapter = new NoteBookAdapter(NoteBookActivity.this,noteBookList);
+            noteBookAdapter = new NoteBookAdapter(this, NoteBookActivity.this, noteBookList);
             recyclerView.setAdapter(noteBookAdapter);
-        }else {
+        } else {
             Gson gson = new Gson();
             noteBookList = gson.fromJson(json, new TypeToken<List<NoteBook>>() {
             }.getType());
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(NoteBookActivity.this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(linearLayoutManager);
-            noteBookAdapter = new NoteBookAdapter(NoteBookActivity.this,noteBookList);
+            noteBookAdapter = new NoteBookAdapter(this, NoteBookActivity.this, noteBookList);
             recyclerView.setAdapter(noteBookAdapter);
         }
     }

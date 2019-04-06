@@ -5,7 +5,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_note_book"
         android:layout_width="match_parent"
+        android:background="@drawable/main_drawer_item_bg"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 

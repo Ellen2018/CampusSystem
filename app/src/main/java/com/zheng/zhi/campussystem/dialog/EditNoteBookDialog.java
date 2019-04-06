@@ -1,12 +1,12 @@
 package com.zheng.zhi.campussystem.dialog;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseDialogFragment;
@@ -29,6 +29,8 @@ public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialog
     EditText etTitle;
     @BindView(R.id.et_content)
     EditText etContent;
+    @BindView(R.id.tv_title)
+    TextView tvTitleName;
 
     @OnClick({R.id.back,R.id.ok})
     void onClick(View view){
@@ -61,11 +63,21 @@ public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialog
 
     @Override
     protected void initData() {
-
+       etTitle.setText(title);
+       etContent.setText(content);
+       if(title != null && title.length() > 0){
+           tvTitleName.setText("查看&修改");
+       }
     }
 
     @Override
     protected void initView() {
+        //获取焦点并弹出软键盘
+        etTitle.setFocusable(true);
+        etTitle.setFocusableInTouchMode(true);
+        etTitle.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(etTitle,0);
     }
 
     @Override

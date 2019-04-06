@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:src="@mipmap/cancel" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="笔记菜单"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_add_note_book"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/main_drawer_item_bg"
+        android:gravity="center"
+        android:text="添加新笔记"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_light" />
+
+    <TextView
+        android:id="@+id/tv_delete_note_book"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/main_drawer_item_bg"
+        android:gravity="center"
+        android:text="删除笔记"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_light" />
+
+    <TextView
+        android:id="@+id/tv_update_note_book"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/main_drawer_item_bg"
+        android:gravity="center"
+        android:text="修改笔记"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_light" />
+
+    <TextView
+        android:id="@+id/tv_serach_note_book"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/main_drawer_item_bg"
+        android:gravity="center"
+        android:text="查询"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_light" />
+
+</LinearLayout>
