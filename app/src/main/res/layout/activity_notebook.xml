@@ -5,52 +5,88 @@
     android:background="@color/white">
 
     <RelativeLayout
-        android:id="@+id/rl_title_bar"
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/blue">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="8dp"
-            android:src="@mipmap/back_icon" />
+        <RelativeLayout
+            android:id="@+id/rl_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                android:src="@mipmap/back_icon" />
 
 
-        <ImageView
-            android:id="@+id/serach"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:padding="12dp"
-            android:src="@mipmap/serach_note_icon" />
+            <ImageView
+                android:id="@+id/serach"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:padding="12dp"
+                android:src="@mipmap/serach_note_icon" />
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="备忘录"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_serach"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:text="备忘录"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:background="@color/blue"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/et_serach"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:hint="请输入搜索内容"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/iv_serach_cancel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:padding="15dp"
+                android:src="@mipmap/cancel" />
+
+        </LinearLayout>
 
     </RelativeLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title_bar" />
+        android:layout_below="@id/rl" />
 
     <TextView
         android:id="@+id/tv_no_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title_bar"
+        android:layout_below="@id/rl"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="无任何笔记数据,请点击右下角加号添加吧！"
+        android:text="@string/no_data"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:visibility="gone" />

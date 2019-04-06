@@ -1,10 +1,14 @@
 package com.zheng.zhi.campussystem.adapter;
 
-import android.app.Activity;
+
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +30,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
     private AppCompatActivity activity;
     private NoteBookActivity noteBookActivity;
     private MenuNoteBookDialog menuNoteBookDialog;
+    private String serachString = "";
 
     public NoteBookAdapter(Context context, AppCompatActivity activity, List<NoteBook> noteBooks) {
         this.context = context;
@@ -34,6 +39,11 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
         this.noteBookActivity = (NoteBookActivity) activity;
     }
 
+    public void setShowList(List<NoteBook> noteBooks,String serachString){
+        this.noteBookList = noteBooks;
+        this.serachString = serachString;
+        this.notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -44,14 +54,38 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
 
     @Override
     public void onBindViewHolder(@NonNull NoteBookViewHolder holder, int position) {
-        holder.tvTitle.setText(noteBookList.get(position).getTitle());
-        holder.tvContent.setText(noteBookList.get(position).getContent());
+        if(serachString.length() == 0) {
+            holder.tvTitle.setText(noteBookList.get(position).getTitle());
+            holder.tvContent.setText(noteBookList.get(position).getContent());
+        }else {
+            NoteBook noteBook = noteBookList.get(position);
+            if(noteBook.getTitle().contains(serachString)){
+                try {
+                    SpannableString spannableString = new SpannableString(noteBook.getTitle());
+                    spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getTitle().indexOf(serachString),
+                            noteBook.getTitle().indexOf(serachString)+serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    holder.tvTitle.setText(spannableString);
+                }catch (Exception e){
+
+                }
+            }else {
+                try {
+                    SpannableString spannableString = new SpannableString(noteBook.getContent());
+                    spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getContent().indexOf(serachString),
+                            noteBook.getContent().indexOf(serachString)+serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    holder.tvContent.setText(spannableString);
+                }catch (Exception e){
+
+                }
+
+            }
+        }
         String time = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(noteBookList.get(position).getCreateTime());
         holder.tvTime.setText(time);
         holder.llNoteBook.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                menuNoteBookDialog = new MenuNoteBookDialog(noteBookList.get(position),new MenuNoteBookDialog.Callback() {
+                menuNoteBookDialog = new MenuNoteBookDialog(serachString.length()>0,noteBookList.get(position),new MenuNoteBookDialog.Callback() {
                     @Override
                     public void add() {
                         menuNoteBookDialog.dismiss();

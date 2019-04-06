@@ -5,6 +5,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -45,6 +46,8 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
     SpringView springView;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_loading)
+    TextView tvLoading;
 
     private Pager pager;
 
@@ -183,6 +186,11 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
                     }
                     Toast.makeText(getActivity(),"上拉加载更多数据成功!",Toast.LENGTH_SHORT).show();
                     break;
+            }
+            if(dataBeanList != null && dataBeanList.size() != 0){
+                tvLoading.setVisibility(View.GONE);
+            }else {
+                tvLoading.setVisibility(View.VISIBLE);
             }
             springView.onFinishFreshAndLoad();
         }

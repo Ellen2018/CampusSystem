@@ -19,4 +19,13 @@
 
     </com.liaoinstan.springview.widget.SpringView>
 
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="数据请求中..."
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
 </RelativeLayout>

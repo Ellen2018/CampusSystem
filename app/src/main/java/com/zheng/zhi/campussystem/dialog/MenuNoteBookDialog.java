@@ -2,6 +2,7 @@ package com.zheng.zhi.campussystem.dialog;
 
 import android.annotation.SuppressLint;
 import android.view.View;
+import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseDialogFragment;
@@ -19,6 +20,12 @@ public class MenuNoteBookDialog extends BaseDialogFragment implements BaseDialog
 
     private Callback callback;
     private NoteBook noteBook;
+    private boolean isSerach;
+
+    @BindView(R.id.tv_add_note_book)
+    TextView tvAddNoteBook;
+    @BindView(R.id.tv_serach_note_book)
+    TextView tvSerachNoteBook;
 
     @OnClick({R.id.cancel,R.id.tv_add_note_book,R.id.tv_delete_note_book,R.id.tv_update_note_book,R.id.tv_serach_note_book})
     void onClick(View view){
@@ -41,9 +48,10 @@ public class MenuNoteBookDialog extends BaseDialogFragment implements BaseDialog
         }
     }
 
-    public MenuNoteBookDialog(NoteBook noteBook,Callback callback){
+    public MenuNoteBookDialog(boolean isSerach,NoteBook noteBook,Callback callback){
         this.callback = callback;
         this.noteBook = noteBook;
+        this.isSerach = isSerach;
     }
 
     @Override
@@ -53,7 +61,10 @@ public class MenuNoteBookDialog extends BaseDialogFragment implements BaseDialog
 
     @Override
     protected void initView() {
-
+        if(isSerach){
+            tvAddNoteBook.setVisibility(View.GONE);
+            tvSerachNoteBook.setVisibility(View.GONE);
+        }
     }
 
     @Override
