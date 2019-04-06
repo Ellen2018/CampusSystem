@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.zheng.zhi.campussystem.R;
 import com.zheng.zhi.campussystem.base.BaseDialogFragment;
+import com.zheng.zhi.campussystem.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +37,13 @@ public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialog
                 callback.cancel();
                 break;
             case R.id.ok:
-                callback.ok(etTitle.getText().toString().trim(),etContent.getText().toString().trim(),System.currentTimeMillis());
+                String title = etTitle.getText().toString().trim();
+                String content = etContent.getText().toString().trim();
+                if(TextUtils.isEmpty(title) || TextUtils.isEmpty(content)){
+                    ToastUtils.toast(getActivity(),"备忘录标题或者内容不能为空");
+                    return;
+                }
+                callback.ok(title,content,System.currentTimeMillis());
                 break;
         }
     }

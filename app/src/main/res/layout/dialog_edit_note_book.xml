@@ -14,7 +14,7 @@
             android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="12dp"
+            android:padding="15dp"
             android:src="@mipmap/cancel" />
 
 
@@ -23,7 +23,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:padding="12dp"
+            android:padding="15dp"
             android:src="@mipmap/ok" />
 
         <TextView
@@ -41,6 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/rl_title_bar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@null"
         android:hint="请输入笔记标题"
         android:textColor="@color/black"
@@ -49,20 +51,22 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:layout_below="@id/et_title"
         android:background="@color/black" />
 
     <EditText
-        android:layout_marginTop="10dp"
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@null"
         android:gravity="top"
         android:hint="请输入笔记内容"
-        android:minHeight="300dp"
+        android:minHeight="200dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray_light" />
 

@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="交通路线"
+            android:text="备忘录"
             android:textColor="@color/white"
             android:textSize="22sp" />
 
