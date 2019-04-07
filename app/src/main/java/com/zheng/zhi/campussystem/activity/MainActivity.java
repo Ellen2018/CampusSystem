@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity implements BaseActivity.ButterKni
         return R.layout.activity_main;
     }
 
+    //替代xx个碎片，比如:新闻
     private void replaceFragment(String tag) {
         tvTitle.setText(tag);
         if (currentFragment != null) {

@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zheng.zhi.campussystem.R;
@@ -39,7 +41,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     public void onBindViewHolder(final HomeRecyclerViewHolder holder, final int position) {
         holder.tv.setText(titles[position]);
         handlerIcon(holder,position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.rlHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(isShowWuHanDaXue){
@@ -143,6 +145,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     private void handlerWhdx(HomeRecyclerViewHolder holder,int position){
         Intent intent = new Intent(context,WebViewActivity.class);
+        //传递标题数据
         intent.putExtra(WebViewActivity.TITLE,titles[position]);
         String url = "";
         switch (titles[position]){
@@ -191,18 +194,23 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         }
     }
 
+    //显示多少个item
     @Override
     public int getItemCount() {
         return titles.length;
     }
 
     static class HomeRecyclerViewHolder extends RecyclerView.ViewHolder{
+        RelativeLayout rlHome;
+        //图片
         ImageView iv;
+        //文字
         TextView tv;
         public HomeRecyclerViewHolder(View itemView) {
             super(itemView);
             iv = itemView.findViewById(R.id.iv);
             tv = itemView.findViewById(R.id.tv_title);
+            rlHome = itemView.findViewById(R.id.rl_home);
         }
     }
 }

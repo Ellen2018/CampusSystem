@@ -77,6 +77,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
         }
     }
 
+    //以Json的方式保存备忘录数据
     private void saveNoteBook(List<NoteBook> noteBooks) {
         tvNoData.setVisibility(View.GONE);
         Gson gson = new Gson();
@@ -96,6 +97,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
             tvNoData.setVisibility(View.GONE);
         }
 
+        //删除用户搜索集合里面的笔记数据
         if(serachNoteBookList != null) {
             serachNoteBookList.remove(noteBook);
             if (serachNoteBookList == null || serachNoteBookList.size() == 0) {
@@ -120,6 +122,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
                 editNoteBookDialog.dismiss();
                 editNoteBookDialog = null;
                 saveNoteBook(noteBookList);
+                //如果当前用户正在搜索，用户修改了搜索的笔记，那么就进行重新搜索
                 if(llSerach.getVisibility() == View.VISIBLE) {
                     serach(etSerach.getText().toString());
                 }
@@ -152,6 +155,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
                 editNoteBookDialog = null;
                 NoteBook noteBook = new NoteBook(title, content, dateTime);
                 noteBookList.add(0, noteBook);
+                //保存数据
                 saveNoteBook(noteBookList);
                 //显示新的数据
                 noteBookAdapter.notifyDataSetChanged();
@@ -177,6 +181,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
         String json = (String) myNoteBookMMKV.getValue(this.getClass().getName(), "");
         Log.e("获取Json",json);
         if (json == null || json.length() == 0 || json.equals(("[]"))) {
+            //说明当前笔记条数要么为空，要么添加了但是用户删光了
             noteBookList = new ArrayList<>();
             tvNoData.setText(getString(R.string.no_data));
             tvNoData.setVisibility(View.VISIBLE);
@@ -186,6 +191,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
             noteBookAdapter = new NoteBookAdapter(this, NoteBookActivity.this, noteBookList);
             recyclerView.setAdapter(noteBookAdapter);
         } else {
+            //如果有笔记，那么就显示数据
             Gson gson = new Gson();
             noteBookList = gson.fromJson(json, new TypeToken<List<NoteBook>>() {
             }.getType());
@@ -229,6 +235,7 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
             tvNoData.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }else {
+            //有数据
             noteBookAdapter.setShowList(serachNoteBookList,serachString);
             tvNoData.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);

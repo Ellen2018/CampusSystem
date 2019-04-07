@@ -3,8 +3,10 @@ package com.zheng.zhi.campussystem.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+//负责皮肤的颜色设置类
 public class SkinColor {
 
+    //默认的颜色值
     public static final String TOP_COLOR = "#FFFFFF";
     public static final String LEFT_COLOR = "#66CDAA";
     public static final String RIGHT_COLOR = "#FFC125";

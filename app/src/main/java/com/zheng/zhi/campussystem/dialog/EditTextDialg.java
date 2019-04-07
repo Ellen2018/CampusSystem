@@ -32,6 +32,7 @@ public class EditTextDialg extends BaseDialogFragment implements BaseDialogFragm
                 dismiss();
                 break;
             case R.id.bt_ok:
+                //将用户修改好的内容通过callback告诉给MoreFragment
                 callback.ok(etContent.getText().toString().trim());
                 break;
         }
@@ -51,6 +52,7 @@ public class EditTextDialg extends BaseDialogFragment implements BaseDialogFragm
     @Override
     protected void initData() {
         tvTitleName.setText(titleName);
+        etContent.setText(content);
     }
 
     @Override

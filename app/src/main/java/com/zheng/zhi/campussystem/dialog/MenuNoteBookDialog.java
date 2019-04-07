@@ -34,15 +34,19 @@ public class MenuNoteBookDialog extends BaseDialogFragment implements BaseDialog
                 dismiss();
                 break;
             case R.id.tv_add_note_book:
+                //添加笔记
                 callback.add();
                 break;
             case R.id.tv_delete_note_book:
+                //删除笔记
                 callback.delete(noteBook);
                 break;
             case R.id.tv_update_note_book:
+                //修改笔记
                 callback.update(noteBook);
                 break;
             case R.id.tv_serach_note_book:
+                //查询笔记
                 callback.serach();
                 break;
         }

@@ -52,22 +52,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        holder.iv.setImageBitmap(null);
         final NewsBean.DataBean dataBean = dataBeanList.get(position);
         if(dataBean.getType().equals("41")){
             //视频
-            Glide.with(context).load(dataBean.getBimageuri()).into(holder.iv);
-            holder.tvContent.setText(dataBean.getText()+"[视频]");
             holder.jzvdStd.setUp(dataBean.getVideouri(), dataBean.getText() , Jzvd.SCREEN_NORMAL);
             Glide.with(context).load(dataBean.getBimageuri()).into(holder.jzvdStd.thumbImageView);
-        }else if(dataBean.getType().equals("10")){
-            //图片
-            Glide.with(context).load(dataBean.getImage0()).into(holder.iv);
-            holder.tvContent.setText(dataBean.getText()+"[图片]");
-        }else if(dataBean.getType().equals("29")){
-            //段子
-            Glide.with(context).load(dataBean.getBimageuri()).into(holder.iv);
-            holder.tvContent.setText(dataBean.getText()+"[段子]");
         }
     }
 

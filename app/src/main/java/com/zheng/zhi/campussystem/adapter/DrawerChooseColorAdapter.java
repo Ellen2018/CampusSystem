@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class DrawerChooseColorAdapter extends RecyclerView.Adapter<DrawerChooseC
         holder.top.setBackgroundColor(Color.parseColor(skinColor.getTopColor()));
         holder.left.setBackgroundColor(Color.parseColor(skinColor.getLeftColor()));
         holder.right.setBackgroundColor(Color.parseColor(skinColor.getRightColor()));
+        //item的点击事件
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +39,11 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
     private String suiJIurl = "https://www.apiopen.top/satinApi?type=1&page=0";
     private String url = "https://www.apiopen.top/satinApi?";
 
+    //请求数据失败(网络有问题&服务器有问题)
     private static final int GET_DATA_FAILURE = 0;
+    //下拉刷新数据成功
     private static final int GET_DATA_SUCCESS_UP = 1;
+    //上拉加载更多数据成功
     private static final int GET_DATA_SUCCESS_DOWN = 2;
 
     @BindView(R.id.spring_view)
@@ -58,6 +62,7 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
     @Override
     protected void initData() {
         pager = new Pager();
+        //传入4的原因就是我只想拿视频的数据
         pager.setType(4);
         refreshDataHandler = new RefreshDataHandler();
         onLoadMoreData(true,pager.getUrl());
@@ -100,20 +105,27 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
 
     @Override
     protected void initView() {
+        //设置下拉刷新显示什么样的头部
         springView.setHeader(new DefaultHeader(getActivity()));
+        //设置上拉加载更多显示什么样的尾部
         springView.setFooter(new DefaultFooter(getActivity()));
+        //添加上拉加载，下拉刷新的监听
         springView.setListener(new SpringView.OnFreshListener() {
+
+            //下拉加载时调用
             @Override
             public void onRefresh() {
                 onLoadMoreData(false,suiJIurl);
             }
 
+            //上拉加载更多时调用
             @Override
             public void onLoadmore() {
                 pager.setPager(pager.getPager()+1);
                 onLoadMoreData(true,pager.getUrl());
             }
         });
+        //让数据以一排一个的方式显示，方向是垂直方向
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -173,6 +185,7 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
                         newsAdapter = new NewsAdapter(getActivity(),dataBeanList);
                         recyclerView.setAdapter(newsAdapter);
                     }else {
+                        //如果之前有数据，那么只用刷新一下就ok了
                         newsAdapter.notifyDataSetChanged();
                         Toast.makeText(getActivity(), "下拉刷新数据成功！", Toast.LENGTH_SHORT).show();
                     }
@@ -192,6 +205,7 @@ public class NewsFragment extends BaseFragment implements BaseFragment.ButterKni
             }else {
                 tvLoading.setVisibility(View.VISIBLE);
             }
+            //去掉加载栏
             springView.onFinishFreshAndLoad();
         }
     }

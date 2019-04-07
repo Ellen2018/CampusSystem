@@ -41,7 +41,8 @@ public class WebViewActivity extends BaseActivity implements BaseActivity.Butter
     public static String TITLE = "title";
 
     private boolean isOpenWaitDialog = true;
-    private List<String> urlList;
+    //用来做网页返回而被使用的
+    private List<String> urlHistoryList;
 
     @Override
     protected void setStatus() {
@@ -54,7 +55,7 @@ public class WebViewActivity extends BaseActivity implements BaseActivity.Butter
 
     @Override
     protected void initData() {
-        urlList = new ArrayList<>();
+        urlHistoryList = new ArrayList<>();
         url = getIntent().getStringExtra(URL);
         WebViewSetttingUtils.loadUrl(webView, url, new WebViewSetttingUtils.Callback() {
             @Override
@@ -63,13 +64,14 @@ public class WebViewActivity extends BaseActivity implements BaseActivity.Butter
 
             @Override
             public void finishLoading(String url) {
+                //避免加入重复的网址到 urlHistoryList
                 boolean isAdd = false;
-                for(String url1:urlList){
+                for(String url1:urlHistoryList){
                     if(url1.equals(url)){
                         isAdd = true;
                     }
                 }
-                if(!isAdd){urlList.add(url);}
+                if(!isAdd){urlHistoryList.add(url);}
             }
         });
         tvTitle.setText(getIntent().getStringExtra(TITLE));
@@ -101,12 +103,12 @@ public class WebViewActivity extends BaseActivity implements BaseActivity.Butter
     }
 
     private void handleUrls() {
-        if(urlList.size() == 1){
+        if(urlHistoryList.size() == 1){
             finish();
         }else {
             //首先移除最近的一个url
-            urlList.remove(urlList.size() - 1);
-            webView.loadUrl(urlList.get(urlList.size() - 1));
+            urlHistoryList.remove(urlHistoryList.size() - 1);
+            webView.loadUrl(urlHistoryList.get(urlHistoryList.size() - 1));
         }
     }
 

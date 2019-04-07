@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,7 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
     void onClick(View view){
         switch (view.getId()){
             case R.id.profile_image:
+                //申请文件读写权限
                 List<String> stringList = new ArrayList<>();
                 stringList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
                 stringList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -80,14 +82,17 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                 });
                 break;
             case R.id.llCalculator:
+                //点击了计算器
                 Intent intent = new Intent(getActivity(), CalculatorActivity.class);
                 startActivity(intent);
                 break;
             case R.id.llNotebook:
+                //点击了备忘录
                 Intent intentNotebook = new Intent(getActivity(), NoteBookActivity.class);
                 startActivity(intentNotebook);
                 break;
             case R.id.llMessage:
+                //点击了关于开发者
                 DeveloperMessageDialog developerMessageDialog = new DeveloperMessageDialog(userMessage.getImagePath());
                 developerMessageDialog.show(getFragmentManager(),"message");
                 break;
@@ -100,8 +105,10 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                         }else {
                             tvUserName.setText(content);
                         }
+                        //保存用户修改完成的用户名
                         userMessage.setUserName(content);
                         toSaveUserMessage();
+                        //让编辑对话框消失
                         editTextDialg.dismiss();
                         editTextDialg = null;
                     }
@@ -109,7 +116,7 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
                 editTextDialg.show(getFragmentManager(),"edit");
                 break;
             case R.id.tv_user_content:
-                editTextDialg = new EditTextDialg(userMessage.getUserName(), "编辑介绍", new EditTextDialg.Callback() {
+                editTextDialg = new EditTextDialg(userMessage.getContent(), "编辑介绍", new EditTextDialg.Callback() {
                     @Override
                     public void ok(String content) {
                         if(TextUtils.isEmpty(content)) {
@@ -180,8 +187,10 @@ public class MoreFragment extends BaseFragment implements BaseFragment.ButterKni
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == CHOOSE_IMAGE_RETRUEN_CODE) {
+                //获取用户选择的相册中的图片地址
                 Uri uri = data.getData();
                 String imagePath = UriUtils.getRealFilePath(getActivity(), uri);
+                Log.e("用户显示的图片",imagePath);
                 Glide.with(getActivity()).load(imagePath).into(imageView);
                 userMessage.setImagePath(imagePath);
                 toSaveUserMessage();

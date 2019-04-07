@@ -4,6 +4,8 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/rl_home"
+        android:background="@drawable/main_drawer_item_bg"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 

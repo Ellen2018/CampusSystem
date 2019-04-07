@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Selection;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -107,6 +108,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         leftItems = new LinkedList<>();
         rightItems = new LinkedList<>();
 
+        //设置皮肤系统的左边模块
         leftItems.add(leftNumberZero);
         leftItems.add(leftNumberOne);
         leftItems.add(leftNumberTwo);
@@ -129,6 +131,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         skinSetting.setOnClickListener(this);
     }
 
+    //修改皮肤颜色
     private void toChangeSkinByString(String colorTop, String colorLeft, String colorRight) {
         toChangeSkinByInt(Color.parseColor(colorTop), Color.parseColor(colorLeft), Color.parseColor(colorRight));
         saveSkin(colorTop, colorLeft, colorRight);
@@ -140,12 +143,16 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         skinPsHelper.put(CalculatorSetting.SKIN_COLOR_RIGHT, colorRight);
     }
 
+    //具体负责修改皮肤颜色的函数
     private void toChangeSkinByInt(int colorTop, int colorLeft, int colorRight) {
         StatusUtils.setStatusBarColor(this, colorRight);
+        //修改顶部颜色
         top.setBackgroundColor(colorTop);
+        //修改左边颜色
         for (CalculatorTextView leftItem : leftItems) {
             leftItem.setUpColor(colorLeft);
         }
+        //修改右边颜色
         for (CalculatorTextView rightItem : rightItems) {
             rightItem.setUpColor(colorRight);
         }
@@ -154,14 +161,17 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     private void initData() {
         skinPsHelper = new SharedPreferencesHelper(context, CalculatorSetting.TAG);
         if (skinPsHelper.getSharedPreference(CalculatorSetting.SKIN_COLOR_TOP, null) == null) {
+            //如果用户之前没有改皮肤颜色值，那么直接默认的
             toChangeSkinByString(SkinColor.TOP_COLOR, SkinColor.LEFT_COLOR, SkinColor.RIGHT_COLOR);
         } else {
+            //如果用户之前已经修改了皮肤颜色值，那么直接加载上次保存的皮肤颜色值
             String topColor = (String) skinPsHelper.getSharedPreference(CalculatorSetting.SKIN_COLOR_TOP, SkinColor.TOP_COLOR);
             String leftColor = (String) skinPsHelper.getSharedPreference(CalculatorSetting.SKIN_COLOR_LEFT, SkinColor.LEFT_COLOR);
             String rightColor = (String) skinPsHelper.getSharedPreference(CalculatorSetting.SKIN_COLOR_RIGHT, SkinColor.RIGHT_COLOR);
             toChangeSkinByString(topColor, leftColor, rightColor);
         }
 
+        //显示侧滑栏皮肤数据
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         chooseSkinRecyclerView.setLayoutManager(linearLayoutManager);
@@ -169,7 +179,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         chooseSkinRecyclerView.setAdapter(new DrawerChooseColorAdapter(context, skinColor.getSkinColors(), new DrawerChooseColorAdapter.CallBack() {
             @Override
             public void chooseSkin(SkinColor skinColor) {
+                //修改皮肤颜色为用户选择的
                 toChangeSkinByString(skinColor.getTopColor(), skinColor.getLeftColor(), skinColor.getRightColor());
+                //关闭负责皮肤的侧滑栏
                 skinSettingDl.closeDrawers();
             }
         }));
@@ -178,6 +190,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     public void onKeyboardClick(View view) {
         TextView textView = (TextView) view;
         String currStr = textView.getText().toString().trim();
+        Log.e("点击了",currStr);
         if (currStr.equals("÷")) {
             currStr = "/";
         }
@@ -268,6 +281,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         switch (view.getId()) {
 
             case R.id.skin:
+                //打开负责皮肤更换的侧滑栏
                 skinSettingDl.openDrawer(Gravity.RIGHT);
                 break;
         }

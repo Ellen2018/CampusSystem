@@ -61,6 +61,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
             NoteBook noteBook = noteBookList.get(position);
             if (noteBook.getTitle().contains(serachString)) {
                 try {
+                    //主要用来用户搜索着色
                     SpannableString spannableString = new SpannableString(noteBook.getTitle());
                     spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getTitle().indexOf(serachString),
                             noteBook.getTitle().indexOf(serachString) + serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -70,6 +71,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
                 }
             } else {
                 try {
+                    //主要用来用户搜索着色
                     SpannableString spannableString = new SpannableString(noteBook.getContent());
                     spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getContent().indexOf(serachString),
                             noteBook.getContent().indexOf(serachString) + serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

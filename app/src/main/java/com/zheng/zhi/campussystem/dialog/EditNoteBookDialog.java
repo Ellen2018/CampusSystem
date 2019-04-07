@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+//添加 & 修改笔记的对话框
 @SuppressLint("ValidFragment")
 public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialogFragment.ButterKnifeInterface {
 
@@ -39,6 +40,7 @@ public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialog
                 callback.cancel();
                 break;
             case R.id.ok:
+                //空字符串检测
                 String title = etTitle.getText().toString().trim();
                 String content = etContent.getText().toString().trim();
                 if(TextUtils.isEmpty(title) || TextUtils.isEmpty(content)){
@@ -72,12 +74,6 @@ public class EditNoteBookDialog extends BaseDialogFragment implements BaseDialog
 
     @Override
     protected void initView() {
-        //获取焦点并弹出软键盘
-        etTitle.setFocusable(true);
-        etTitle.setFocusableInTouchMode(true);
-        etTitle.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(etTitle,0);
     }
 
     @Override

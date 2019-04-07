@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--负责上拉刷新，下拉加载-->
     <com.liaoinstan.springview.widget.SpringView
         android:id="@+id/spring_view"
         android:layout_width="match_parent"

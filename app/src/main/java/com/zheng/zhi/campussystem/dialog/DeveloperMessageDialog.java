@@ -20,11 +20,11 @@ public class DeveloperMessageDialog extends BaseDialogFragment implements BaseDi
     private String imagePath = "";
     private Unbinder unbinder;
 
-    private String studentId = "学号：";
-    private String name = "姓名：";
-    private String professionName = "专业名：";
-    private String departmentName = "院系名：";
-    private String tutorName = "导师名：";
+    private String studentId = "学号：20150804020";
+    private String name = "姓名：郑植";
+    private String professionName = "专业名：计算机科学与技术";
+    private String departmentName = "院系名：计算机学院";
+    private String tutorName = "导师名：李芬";
     private String version = "版本号：1.0";
     private String date = "日期：2019-04-02";
 
