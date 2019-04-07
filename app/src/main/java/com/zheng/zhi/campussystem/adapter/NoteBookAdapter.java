@@ -39,7 +39,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
         this.noteBookActivity = (NoteBookActivity) activity;
     }
 
-    public void setShowList(List<NoteBook> noteBooks,String serachString){
+    public void setShowList(List<NoteBook> noteBooks, String serachString) {
         this.noteBookList = noteBooks;
         this.serachString = serachString;
         this.notifyDataSetChanged();
@@ -54,27 +54,27 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
 
     @Override
     public void onBindViewHolder(@NonNull NoteBookViewHolder holder, int position) {
-        if(serachString.length() == 0) {
+        if (serachString.length() == 0) {
             holder.tvTitle.setText(noteBookList.get(position).getTitle());
             holder.tvContent.setText(noteBookList.get(position).getContent());
-        }else {
+        } else {
             NoteBook noteBook = noteBookList.get(position);
-            if(noteBook.getTitle().contains(serachString)){
+            if (noteBook.getTitle().contains(serachString)) {
                 try {
                     SpannableString spannableString = new SpannableString(noteBook.getTitle());
                     spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getTitle().indexOf(serachString),
-                            noteBook.getTitle().indexOf(serachString)+serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            noteBook.getTitle().indexOf(serachString) + serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     holder.tvTitle.setText(spannableString);
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
-            }else {
+            } else {
                 try {
                     SpannableString spannableString = new SpannableString(noteBook.getContent());
                     spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF0000")), noteBook.getContent().indexOf(serachString),
-                            noteBook.getContent().indexOf(serachString)+serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            noteBook.getContent().indexOf(serachString) + serachString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     holder.tvContent.setText(spannableString);
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -85,7 +85,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
         holder.llNoteBook.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                menuNoteBookDialog = new MenuNoteBookDialog(serachString.length()>0,noteBookList.get(position),new MenuNoteBookDialog.Callback() {
+                menuNoteBookDialog = new MenuNoteBookDialog(serachString.length() > 0, noteBookList.get(position), new MenuNoteBookDialog.Callback() {
                     @Override
                     public void add() {
                         menuNoteBookDialog.dismiss();
@@ -98,22 +98,24 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
                         menuNoteBookDialog.dismiss();
                         menuNoteBookDialog = null;
                         noteBookActivity.deleteNoteBook(noteBook);
-                        ToastUtils.toast(context,"删除笔记成功!");
+                        ToastUtils.toast(context, "删除笔记成功!");
                     }
 
                     @Override
                     public void update(NoteBook noteBook) {
                         menuNoteBookDialog.dismiss();
                         menuNoteBookDialog = null;
-                       noteBookActivity.showUpdateNoteBookDialog(noteBook);
+                        noteBookActivity.showUpdateNoteBookDialog(noteBook);
                     }
 
                     @Override
                     public void serach() {
-
+                        menuNoteBookDialog.dismiss();
+                        menuNoteBookDialog = null;
+                        noteBookActivity.serach();
                     }
                 });
-                menuNoteBookDialog.showNow(activity.getSupportFragmentManager(),"menu");
+                menuNoteBookDialog.showNow(activity.getSupportFragmentManager(), "menu");
                 return false;
             }
         });
@@ -132,7 +134,7 @@ public class NoteBookAdapter extends RecyclerView.Adapter<NoteBookAdapter.NoteBo
 
     public static class NoteBookViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTitle,tvContent,tvTime;
+        TextView tvTitle, tvContent, tvTime;
         LinearLayout llNoteBook;
 
         public NoteBookViewHolder(View itemView) {

@@ -134,6 +134,11 @@ public class NoteBookActivity extends BaseActivity implements BaseActivity.Butte
         editNoteBookDialog.show(getSupportFragmentManager(), "编辑文本");
     }
 
+    public void serach(){
+        rlTitleBar.setVisibility(View.GONE);
+        llSerach.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void setStatus() {
 
